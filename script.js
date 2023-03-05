@@ -5,7 +5,7 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 
-populateUI()
+populateUI();
 
 let ticketPrice = +movieSelect.value;
 
@@ -44,12 +44,20 @@ function populateUI() {
   );
 
 if(selectedSeats !== null && selectedSeats.length > 0){
-seats.forEach((seat,index) =>  {
+seats.forEach((seat, index) =>  {
   if(selectedSeats.indexOf(index) > -1) {
 seat.classList.add('selected');
 }
 });
-};
+
+
+const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+
+if (selectedMovieIndex !== null) {
+movieSelect.selectedIndex = selectedMovieIndex;
+
+}
+}
 
 
 
@@ -73,3 +81,6 @@ container.addEventListener('click', e => {
     updateSelectedCount();
  }
 })};
+
+//Initial count and total set
+updateSelectedCount();
